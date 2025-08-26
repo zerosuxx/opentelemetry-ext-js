@@ -1,6 +1,6 @@
 {
-    "name": "opentelemetry-instrumentation-elasticsearch",
-    "version": "0.41.0",
+    "name": "@zerosuxx/opentelemetry-instrumentation-elasticsearch",
+    "version": "0.41.0-3",
     "description": "open telemetry instrumentation for the `elasticsearch` module",
     "keywords": [
         "elasticsearch",
@@ -29,41 +29,39 @@
     },
     "scripts": {
         "build": "tsc",
-        "prepare": "yarn build",
+        "prepare": "npm run build",
         "watch": "tsc -w",
+        "typecheck": "tsc --noEmit",
         "version:update": "node ../../scripts/version-update.js",
-        "version": "yarn run version:update",
+        "version": "npm run version:update",
         "test": "mocha --require @opentelemetry/contrib-test-utils",
         "test:jaeger": "OTEL_EXPORTER_JAEGER_AGENT_HOST=localhost mocha --require @opentelemetry/contrib-test-utils",
         "test-all-versions": "tav",
-        "test:ci": "yarn test-all-versions"
+        "test:ci": "npm run test-all-versions"
     },
     "bugs": {
         "url": "https://github.com/aspecto-io/opentelemetry-ext-js/issues"
     },
     "peerDependencies": {
-        "@opentelemetry/api": "^1.8.0"
-    },
-    "dependencies": {
-        "@opentelemetry/core": "^1.24.1",
-        "@opentelemetry/instrumentation": "^0.51.1",
-        "@opentelemetry/semantic-conventions": "^1.24.1"
+        "@opentelemetry/api": "^1.9.0",
+        "@opentelemetry/core": "^2.0.1",
+        "@opentelemetry/instrumentation": "^0.203.0",
+        "@opentelemetry/semantic-conventions": "^1.36.0"
     },
     "devDependencies": {
         "@elastic/elasticsearch": "^7.8.0",
-        "@opentelemetry/api": "^1.8.0",
-        "@opentelemetry/contrib-test-utils": "^0.39.0",
-        "@types/chai": "^4.2.15",
-        "@types/mocha": "^8.2.2",
-        "aspecto-opentelemetry-instrumentation-mocha": "0.0.9-alpha.0",
-        "chai": "^4.3.0",
-        "expect": "^26.6.2",
-        "mocha": "^8.4.0",
-        "nock": "^13.0.9",
-        "sinon": "^9.2.4",
-        "test-all-versions": "^5.0.1",
+        "@opentelemetry/api": "^1.9.0",
+        "@opentelemetry/contrib-test-utils": "^0.49.0",
+        "@types/chai": "^5.2.2",
+        "@types/mocha": "^10.0.10",
+        "chai": "^6.0.1",
+        "expect": "^30.0.5",
+        "mocha": "^11.7.1",
+        "nock": "^14.0.10",
+        "sinon": "^21.0.0",
+        "test-all-versions": "^6.2.0",
         "ts-node": "^10.9.2",
-        "typescript": "5.4.5"
+        "typescript": "^5.9.2"
     },
     "mocha": {
         "extension": [
@@ -71,8 +69,7 @@
         ],
         "spec": "test/**/*.spec.ts",
         "require": [
-            "ts-node/register",
-            "aspecto-opentelemetry-instrumentation-mocha"
+            "ts-node/register"
         ]
     }
 }

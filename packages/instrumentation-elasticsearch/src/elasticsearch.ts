@@ -1,6 +1,5 @@
 import { diag, context, trace, Span } from '@opentelemetry/api';
 import { suppressTracing } from '@opentelemetry/core';
-import type elasticsearch from '@elastic/elasticsearch';
 import { ElasticsearchInstrumentationConfig } from './types';
 import {
     InstrumentationBase,
@@ -10,7 +9,7 @@ import {
 } from '@opentelemetry/instrumentation';
 import { VERSION } from './version';
 import { AttributeNames } from './enums';
-import { SEMATTRS_DB_OPERATION, SEMATTRS_DB_STATEMENT, SemanticAttributes } from '@opentelemetry/semantic-conventions';
+import { SEMATTRS_DB_OPERATION, SEMATTRS_DB_STATEMENT } from '@opentelemetry/semantic-conventions';
 import {
     startSpan,
     onError,
@@ -29,11 +28,7 @@ export class ElasticsearchInstrumentation extends InstrumentationBase {
     private moduleVersion: string;
 
     constructor(config: ElasticsearchInstrumentationConfig = {}) {
-        super('opentelemetry-instrumentation-elasticsearch', VERSION, Object.assign({}, config));
-    }
-
-    override setConfig(config: ElasticsearchInstrumentationConfig = {}) {
-        this._config = Object.assign({}, config);
+        super('opentelemetry-instrumentation-elasticsearch', VERSION, { ...config });
     }
 
     protected init(): InstrumentationModuleDefinition {
